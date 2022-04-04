@@ -1,0 +1,71 @@
+{
+  "root": "apps/room-app",
+  "sourceRoot": "apps/room-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/room-app",
+        "index": "apps/room-app/src/index.html",
+        "baseHref": "/",
+        "main": "apps/room-app/src/main.tsx",
+        "polyfills": "apps/room-app/src/polyfills.ts",
+        "tsConfig": "apps/room-app/tsconfig.app.json",
+        "assets": ["apps/room-app/src/favicon.ico", "apps/room-app/src/assets"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/room-app/src/environments/environment.ts",
+              "with": "apps/room-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "room-app:build",
+        "hmr": true,
+        "proxyConfig": "apps/room-app/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "room-app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/room-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/room-app"],
+      "options": {
+        "jestConfig": "apps/room-app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

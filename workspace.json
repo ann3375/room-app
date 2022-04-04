@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "room-app": "apps/room-app",
+    "room-app-e2e": "apps/room-app-e2e"
+  }
+}
